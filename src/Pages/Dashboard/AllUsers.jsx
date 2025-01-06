@@ -31,7 +31,7 @@ const AllUsers = () => {
     });
   };
 
-//   delete user in database
+  //   delete user in database
   const handleDeleteUser = (user) => {
     Swal.fire({
       title: "Are you sure?",

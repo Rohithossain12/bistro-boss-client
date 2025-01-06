@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
-  };
+  }; 
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     });
     return () => unSubscribe();
-  }, []);
+  }, [axiosPublic]);
 
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
