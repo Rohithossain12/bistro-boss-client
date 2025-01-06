@@ -32,7 +32,7 @@ const Navbar = () => {
         <NavLink to="/order/salad">ORDER FOOD</NavLink>
       </li>
       <li>
-        <Link to="/">
+        <Link to="/dashboard/cart">
           <HiShoppingCart size={25} />
           <button className="px-2 py-1.5 bg-white rounded-lg">
             <div className="badge text-white bg-secondary">+{cart.length}</div>
