@@ -8,6 +8,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { Link, replace, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
+import SocialLogin from "../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -118,6 +119,8 @@ const Login = () => {
               />
             </div>
           </form>
+          <SocialLogin></SocialLogin>
+
           <p className="ml-5">
             <small>
               New Here ?

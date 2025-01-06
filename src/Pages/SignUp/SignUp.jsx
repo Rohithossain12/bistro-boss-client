@@ -4,8 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const {
@@ -21,10 +24,19 @@ const SignUp = () => {
       console.log(loggedUser);
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          console.log("profile updated");
-          reset();
-          toast.success("User Created successfully");
-          navigate("/");
+          // create user entry in the database
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log('user added to the database')
+              reset();
+              toast.success("User Created successfully");
+              navigate("/");
+            }
+          });
         })
         .catch(() => {
           toast.error("User Created Unsuccessful");
@@ -141,6 +153,9 @@ const SignUp = () => {
               value="Sign Up"
             />
           </form>
+           
+           <SocialLogin></SocialLogin>
+
           <p className="ml-8">
             <small>
               Already have an Account ?
