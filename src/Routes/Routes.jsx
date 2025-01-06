@@ -13,6 +13,7 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
 import UserHome from "../Pages/Dashboard/UserHome";
 import AddReview from "../Pages/Dashboard/AddReview";
 import BookingList from "../Pages/Dashboard/BookingList";
+import AllUsers from "../Pages/Dashboard/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -77,6 +78,13 @@ export const router = createBrowserRouter([
         path: "booking",
         element: <BookingList></BookingList>,
       },
+
+
+      // admin routes
+      {
+        path:'users',
+        element:<AllUsers></AllUsers>
+      }
     ],
   },
 ]);

@@ -75,11 +75,13 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end flex gap-4 items-center">
-          <img
-            className="w-12 h-12 rounded-full object-cover"
-            src={user?.photoURL}
-            alt=""
-          />
+          {user && (
+            <img
+              className="w-12 h-12 rounded-full object-cover"
+              src={user?.photoURL}
+              alt=""
+            />
+          )}
           {user ? (
             <>
               <button onClick={handleLogOut} className="btn ">
