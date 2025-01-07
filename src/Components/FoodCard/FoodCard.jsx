@@ -8,7 +8,7 @@ const FoodCard = ({ item }) => {
   const { name, image, price, recipe, _id } = item || {};
   const navigate = useNavigate();
   const location = useLocation();
-  const axiosInstance = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [, refetch] = useCart();
 
@@ -23,7 +23,7 @@ const FoodCard = ({ item }) => {
         image,
         price,
       };
-      axiosInstance.post("/carts", cartItem).then((res) => {
+      axiosSecure.post("/carts", cartItem).then((res) => {
         console.log(res.data);
         if (res.data.insertedId) {
           toast.success("Added to cart");

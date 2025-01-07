@@ -5,18 +5,18 @@ import { FaTrashAlt, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const AllUsers = () => {
-  const axiosInstance = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/users");
+      const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
 
   // make admin
   const handleMakeAdmin = (user) => {
-    axiosInstance.patch(`/users/admin/${user?._id}`).then((res) => {
+    axiosSecure.patch(`/users/admin/${user?._id}`).then((res) => {
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
@@ -43,7 +43,7 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosInstance.delete(`/users/${user?._id}`).then((res) => {
+        axiosSecure.delete(`/users/${user?._id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             refetch();
             Swal.fire({
