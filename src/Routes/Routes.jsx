@@ -9,7 +9,6 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/Dashboard/Cart/Cart";
 import Reservation from "../Pages/Dashboard/Reservation";
-import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
 import UserHome from "../Pages/Dashboard/UserHome";
 import AddReview from "../Pages/Dashboard/AddReview";
 import BookingList from "../Pages/Dashboard/BookingList";
@@ -18,6 +17,7 @@ import AddItem from "../Layout/AddItem";
 import AdminRoute from "./AdminRoute";
 import ManageItem from "../Pages/Dashboard/ManageItem/ManageItem";
 import UpdateItem from "../Layout/UpdateItem/UpdateItem";
+import Payment from "../Layout/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -69,7 +69,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "payment",
-        element: <PaymentHistory></PaymentHistory>,
+        element: <Payment></Payment>,
       },
       {
         path: "userHome",
@@ -102,9 +102,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path:'updateItem/:id',
-        element:<AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/menu/${params.id}`)
+        path: "updateItem/:id",
+        element: (
+          <AdminRoute>
+            <UpdateItem></UpdateItem>
+          </AdminRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/menu/${params.id}`),
       },
       {
         path: "manageItems",
