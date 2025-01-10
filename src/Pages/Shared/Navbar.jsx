@@ -5,9 +5,11 @@ import toast from "react-hot-toast";
 
 import { HiShoppingCart } from "react-icons/hi";
 import useCart from "../../hooks/useCart";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
   const [cart] = useCart();
 
   const handleLogOut = () => {
@@ -31,6 +33,16 @@ const Navbar = () => {
       <li>
         <NavLink to="/order/salad">ORDER FOOD</NavLink>
       </li>
+      {user && isAdmin && (
+        <li>
+          <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
+        </li>
+      )}
+      {user && !isAdmin && (
+        <li>
+          <NavLink to="/dashboard/userHome">Dashboard</NavLink>
+        </li>
+      )}
       <li>
         <Link to="/dashboard/cart">
           <HiShoppingCart size={25} />

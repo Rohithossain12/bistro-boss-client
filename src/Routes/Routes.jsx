@@ -19,6 +19,7 @@ import ManageItem from "../Pages/Dashboard/ManageItem/ManageItem";
 import UpdateItem from "../Layout/UpdateItem/UpdateItem";
 import Payment from "../Layout/Payment/Payment";
 import PaymentHIstory from "../Layout/PaymentHIstory";
+import AdminHome from "../Layout/AdminHome/AdminHome";
 
 export const router = createBrowserRouter([
   {
@@ -90,6 +91,15 @@ export const router = createBrowserRouter([
       },
 
       // admin only routes
+
+      {
+        path: "adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
+      },
       {
         path: "users",
         element: (
